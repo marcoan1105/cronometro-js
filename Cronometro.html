@@ -155,17 +155,18 @@
 	  		this.validarTempoMinimo();
 			this.validarTempoMaximo();
 			this.escreverTempoEmTela();
+	  	},
+	  	configurarRelogio(){
+	  		setInterval(() => {			
+				if (this.timerAtual != null && this.timerEnabled && !this.validarTempoMinimo()) {
+					this.removerTempo(1);
+	            }
+			}, 1000);
 	  	}
 	  },
 	  mounted(){
-		this.zerarCronometro();		
-
-		setInterval(() => {
-			console.log(this.timerEnabled);
-			if (this.timerAtual != null && this.timerEnabled && !this.validarTempoMinimo()) {
-				this.removerTempo(1);
-            }
-		}, 1000);
+		this.zerarCronometro();
+		this.configurarRelogio();		
 	  }
 	})
   	
